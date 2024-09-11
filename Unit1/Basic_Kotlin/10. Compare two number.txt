@@ -1,0 +1,3 @@
+fun compareScreenTime(timeToday: Int, timeYesterday: Int): Boolean {
+    return timeToday > timeYesterday
+}
