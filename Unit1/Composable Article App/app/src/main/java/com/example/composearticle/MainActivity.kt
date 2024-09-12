@@ -41,10 +41,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Card(title: String, description1: String, description2: String, imagePainter: Painter, modifier: Modifier = Modifier) {
+ fun Card(title: String, description1: String, description2: String, imagePainter: Painter, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         Image(painter = imagePainter, contentDescription = null)
-        Text(text = title, modifier = modifier.padding(16.dp), fontSize =  24.sp)
+        Text(text = title, modifier = modifier.padding(30.dp), fontSize =  24.sp)
         Text(text = description1, modifier = Modifier.padding(start = 16.dp, end = 16.dp), textAlign = TextAlign.Justify)
         Text(text = description2, modifier = Modifier.padding(start = 16.dp), textAlign = TextAlign.Justify)
     }
