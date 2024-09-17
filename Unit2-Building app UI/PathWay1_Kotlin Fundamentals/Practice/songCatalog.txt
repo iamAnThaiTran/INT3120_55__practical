@@ -1,0 +1,38 @@
+Solutions
+Docs
+Community
+Teach
+Play
+
+2.0.20
+JVM
+Program arguments
+Copy link
+Share code
+Run
+class Song(
+val title: String,
+val artist: String,
+val yearPublished: Int,
+var playCount: Int) {
+    val isPopular: Boolean
+    get() = playCount >= 1000
+    
+//     fun isPopular(): Boolean {
+//         return playCount >= 1000
+//     }
+    
+    fun printDescription() {
+        println("$title, performed by $artist, was released in $yearPublished.")
+    }
+    
+    
+}
+​
+fun main() {    
+    val mckRapSong = Song("choi do", "wrxdie", 2020, 999999999)
+    mckRapSong.printDescription()
+    println(mckRapSong.isPopular)
+}
+choi do, performed by wrxdie, was released in 2020.
+true
