@@ -21,7 +21,7 @@ plugins {
 
 android {
     namespace = "com.example.woof"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.woof"
@@ -76,6 +76,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.compose.material:material-icons-extended")
     //implementation("androidx.compose.material3:material3-android:1.3.0")
 
     debugImplementation("androidx.compose.ui:ui-test-manifest")
