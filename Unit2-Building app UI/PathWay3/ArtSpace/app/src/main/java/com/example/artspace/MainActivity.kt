@@ -59,6 +59,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
+    
+
 }
 
 @Composable
@@ -161,4 +164,5 @@ fun ArtSpaceMain() {
     }
 
 }
+
 
