@@ -37,19 +37,30 @@ import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    marsUiState: MarsViewModel.MarsUiState,
-    modifier: Modifier = Modifier
+
+    marsUiState:MarsUiState,
+    modifier: Modifier = Modifier,
+            contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     when (marsUiState) {
-        is MarsViewModel.MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
-        is MarsViewModel.MarsUiState.Success -> ResultScreen(
+        is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is MarsUiState.Success -> ResultScreen(
             marsUiState.photos, modifier = modifier.fillMaxWidth()
         )
 
-        is MarsViewModel.MarsUiState.Error -> ErrorScreen( modifier = modifier.fillMaxSize())
+        is MarsUiState.Error -> ErrorScreen( modifier = modifier.fillMaxSize())
     }
 }
+
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    Image(
+        modifier = modifier.size(200.dp),
+        painter = painterResource(R.drawable.loading_img),
+        contentDescription = stringResource(R.string.loading)
+    )
+}
+
 
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
@@ -65,14 +76,6 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
-    Image(
-        modifier = modifier.size(200.dp),
-        painter = painterResource(R.drawable.loading_img),
-        contentDescription = stringResource(R.string.loading)
-    )
-}
 
 /**
  * ResultScreen displaying number of photos retrieved.

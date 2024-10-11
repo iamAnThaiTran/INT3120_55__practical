@@ -23,7 +23,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.marsphotos.network.MarsApi
 import com.example.marsphotos.network.MarsPhoto
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.io.IOException
+
+sealed interface MarsUiState {
+    data class Success(val photos: String) : MarsUiState
+    object Error : MarsUiState
+    object Loading : MarsUiState
+}
 
 class MarsViewModel : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
@@ -51,14 +58,13 @@ class MarsViewModel : ViewModel() {
                 )
             } catch (e: IOException) {
                 MarsUiState.Error
+            }catch (e: HttpException) {
+                MarsUiState.Error
             }
 
         }
     }
 
-    sealed interface MarsUiState {
-        data class Success(val photos: String) : MarsUiState
-        object Error : MarsUiState
-        object Loading : MarsUiState
-    }
+
+
 }
