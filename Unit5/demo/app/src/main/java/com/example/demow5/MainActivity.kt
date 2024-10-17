@@ -1,12 +1,11 @@
 package com.example.demow5
 
 import android.os.Bundle
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,8 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -23,18 +22,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.updateBounds
 import com.example.compose.Demow5Theme
-import com.example.compose.onPrimaryContainerLight
-import com.example.compose.onPrimaryLight
-import com.example.compose.primaryLight
-
-
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,12 +83,16 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             contentDescription = null
         )
 
-        //9patch
-        Image(painter = painterResource(R.drawable.ronaldo2),
-            contentDescription = null
-        )
-
          */
+
+        //9patch
+//        Image(painter = painterResource(R.drawable.TranThaiAn),
+//            contentDescription = null
+//        )
+
+
+
+
 
 
         Spacer(modifier = Modifier.padding(20.dp))
@@ -111,14 +113,33 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             )
         }
 
-        Card88()
+        ImageButton()
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    Demow5Theme {
-        Greeting("Android")
+fun ImageButton(
+    //onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            //.clickable { onClick() }
+    ) {
+
+        val bgImg = ContextCompat.getDrawable(
+            LocalContext.current,
+            R.drawable.tranthaian_1
+        )
+        Text(text = "This my xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx message",
+            modifier = Modifier
+                .drawBehind {
+                    bgImg?.updateBounds(0, 0, size.width.toInt(), size.height.toInt())
+                    bgImg?.draw(drawContext.canvas.nativeCanvas)
+                }
+                .padding(8.dp)
+        )
     }
 }
+
